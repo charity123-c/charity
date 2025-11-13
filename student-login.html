@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login - Muni University Suggestion System</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/x-icon" href="images/logo.jpg">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .student-login-body {
+            background-image: url('images/Muni_University,_main_campus,_West-Nile_Uganda.jpg_14 (1).jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .student-login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(128, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .student-login-container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .student-login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .student-login-header .logo-main {
+            justify-content: center;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .student-login-card {
+            background: rgba(255, 255, 255, 0.70);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 2px solid var(--gold);
+        }
+
+        .student-login-card h2 {
+            color: var(--maroon);
+            text-align: center;
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        .student-login-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .student-login-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .student-login-form label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--maroon);
+        }
+
+        .student-login-form input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--maroon);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .student-login-form input:focus {
+            outline: none;
+            border-color: var(--maroon);
+        }
+
+        .student-login-btn {
+            background: var(--maroon);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .student-login-btn:hover {
+            background: var(--maroon-dark);
+            transform: translateY(-2px);
+        }
+
+        .student-login-links {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .student-login-link {
+            color: var(--maroon);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            display: block;
+            margin: 0.5rem 0;
+        }
+
+        .student-login-link:hover {
+            color: var(--maroon-dark);
+            text-decoration: underline;
+        }
+
+        .student-login-footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body class="student-login-body">
+    <div class="student-login-overlay"></div>
+    <div class="student-login-container">
+        <div class="student-login-header">
+            <div class="logo-main">
+                <img src="images/logo.jpg" alt="Muni University Logo" style="height: 80px; border-radius: 8px;">
+                <div class="logo-text">
+                    <span class="university-name">Muni University</span>
+                    <span class="system-name">Student Suggestion System</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="student-login-card">
+            <h2>Student Login</h2>
+            <p class="student-login-subtitle">Access your student portal and track your suggestions</p>
+            
+            <form id="studentLoginForm" class="student-login-form">
+                <div class="form-group">
+                    <label for="studentEmail">
+                        <i class="fas fa-envelope"></i>
+                        Email Address
+                    </label>
+                    <input type="email" id="studentEmail" name="email" required placeholder="your.email@muni.ac.ug">
+                </div>
+
+                <div class="form-group">
+                    <label for="studentPassword">
+                        <i class="fas fa-lock"></i>
+                        Password
+                    </label>
+                    <input type="password" id="studentPassword" name="password" required placeholder="Enter your password">
+                </div>
+
+                <button type="submit" class="student-login-btn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Sign In as Student
+                </button>
+
+                <div class="student-login-links">
+                    <a href="forgot-password.html" class="student-login-link">Forgot Password?</a>
+                    <a href="student-register.html" class="student-login-link">Don't have an account? Register</a>
+                    <a href="index.html" class="student-login-link">Back to Home</a>
+                </div>
+            </form>
+
+            <div id="message" class="message" style="display: none;"></div>
+        </div>
+
+        <div class="student-login-footer">
+            <p>&copy; 2025 Muni University - Student Suggestion System</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('studentLoginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('.student-login-btn');
+            const originalText = submitBtn.innerHTML;
+            const messageDiv = document.getElementById('message');
+            
+            // Show loading state
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing In...';
+            submitBtn.disabled = true;
+            messageDiv.style.display = 'none';
+            messageDiv.textContent = '';
+            messageDiv.className = 'message';
+            
+            const formData = {
+                email: document.getElementById('studentEmail').value,
+                password: document.getElementById('studentPassword').value
+            };
+            
+            try {
+                const response = await fetch('/api/auth/student-login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    // Store token and redirect to student dashboard
+                    localStorage.setItem('studentToken', data.token);
+                    localStorage.setItem('studentEmail', data.email);
+                    messageDiv.textContent = 'Login successful! Redirecting...';
+                    messageDiv.className = 'message success';
+                    messageDiv.style.display = 'block';
+                    
+                    setTimeout(() => {
+                        window.location.href = '/student-dashboard.html';
+                    }, 1000);
+                } else {
+                    messageDiv.textContent = data.error || 'Login failed. Please check your credentials.';
+                    messageDiv.className = 'message error';
+                    messageDiv.style.display = 'block';
+                }
+            } catch (error) {
+                messageDiv.textContent = 'Network error. Please try again.';
+                messageDiv.className = 'message error';
+                messageDiv.style.display = 'block';
+            } finally {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
